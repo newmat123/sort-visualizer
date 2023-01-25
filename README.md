@@ -18,5 +18,5 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Image of the game
+## Image visualizer
 ![The finished product](https://github.com/newmat123/sort-visualizer/blob/main/public/sortingVisualizer.png?raw=true)
