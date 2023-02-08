@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 
 const ARR_LEN = 100;
-const MAX_H = 250;
+const MAX_H = 200;
 const MIN_H = 20;
 const ANIM_SPEED = 25; // ms
 
@@ -39,7 +39,7 @@ export default function SortingAlgorithms() {
             let bar = document.getElementById(i as unknown as string) as HTMLDivElement | null;
             bar && (bar.style.backgroundColor = '#22c55e');
             forceUpdate();
-            await sleep(animationSpeed/2);
+            await sleep(animationSpeed / 2);
         }
         setSorting(false);
     }
@@ -47,7 +47,7 @@ export default function SortingAlgorithms() {
     //algorithms--------------------------------------------------------------------
 
     const mergeSort = async () => {
-        
+
         const merge = async (array: number[], LeftI: number, mid: number, rightI: number) => {
             let i = LeftI;
             let j = mid + 1;
@@ -176,7 +176,7 @@ export default function SortingAlgorithms() {
                 }
             }
 
-            let bar2 = document.getElementById(minIndex  as unknown as string) as HTMLDivElement | null;
+            let bar2 = document.getElementById(minIndex as unknown as string) as HTMLDivElement | null;
             bar2 && (bar2.style.backgroundColor = '#6A5ACD');
 
             await sleep(animationSpeed);
@@ -195,11 +195,11 @@ export default function SortingAlgorithms() {
     return (
         <div className="relative flex flex-col justify-center bg-slate-800 bg-opacity-20 rounded-md shadow-lg">
             <div className="flex flex-col">
-                <div className="flex justify-between mt-auto min-w-[400px] h-[280px] p-2" >
+                <div className="flex justify-between mt-auto min-w-[300px] sm:min-w-[400px] h-[210px]" >
                     {arr &&
                         arr.map((barHeight, index) => (
                             <div
-                                className=" bg-orange-500 w-1 2xl:p-[3px] rounded" //#f97316
+                                className=" bg-orange-500 w-full p-[1px] sm:p-[2px] xl:p-[3px] rounded-b" //#f97316
                                 style={{
                                     height: `${barHeight}px`
                                 }}
@@ -209,16 +209,16 @@ export default function SortingAlgorithms() {
                         ))}
                 </div>
                 <div className="flex justify-between m-2 py-0 px-2 2xl:p-2 2xl:mx-10 relative">
-                    <button className=" hover:text-slate-300 hover:shadow-md" onClick={newArray}>
+                    <button className=" hover:text-slate-300 hover:shadow-md text-xs sm:text-base" onClick={newArray}>
                         New array
                     </button>
-                    <button className=" hover:text-slate-300 hover:shadow-md" onClick={mergeSort}>
+                    <button className=" hover:text-slate-300 hover:shadow-md text-xs sm:text-base" onClick={mergeSort}>
                         Merge sort
                     </button>
-                    <button className=" hover:text-slate-300 hover:shadow-md" onClick={bubbleSort}>
+                    <button className=" hover:text-slate-300 hover:shadow-md text-xs sm:text-base" onClick={bubbleSort}>
                         Bubble sort
                     </button>
-                    <button className=" hover:text-slate-300 hover:shadow-md" onClick={selection}>
+                    <button className=" hover:text-slate-300 hover:shadow-md text-xs sm:text-base" onClick={selection}>
                         Selection sort
                     </button>
                     {
