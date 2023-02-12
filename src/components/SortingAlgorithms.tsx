@@ -164,29 +164,44 @@ export default function SortingAlgorithms() {
 
     const selection = async () => {
         setSorting(true);
+
         for (let i = 0; i < arr.length; i++) {
+            let minIndex = i;
+
             let bar1 = document.getElementById(i as unknown as string) as HTMLDivElement | null;
-            bar1 && (bar1.style.backgroundColor = '#DC143C');
-            //await sleep(animationSpeed);
+            bar1 && (bar1.style.backgroundColor = '#22c55e');
+            let bar2 = null;
+            let bar3 = null;
 
-            var minIndex = i;
             for (let j = minIndex + 1; j < arr.length; j++) {
+
+                bar2 = document.getElementById(j as unknown as string) as HTMLDivElement | null;
+                bar2 && (bar2.style.backgroundColor = '#6A5ACD');
+                
+                await sleep(animationSpeed);
+                bar2 && (bar2.style.backgroundColor = '#f97316');
+
                 if (arr[minIndex] > arr[j]) {
+                    bar3 = document.getElementById(minIndex as unknown as string) as HTMLDivElement | null;
+                    bar3 && (bar3.style.backgroundColor = '#f97316');
+
                     minIndex = j;
+                    bar3 = document.getElementById(minIndex as unknown as string) as HTMLDivElement | null;
+                    bar3 && (bar3.style.backgroundColor = '#DC143C');
+                    
+                    bar1 && (bar1.style.backgroundColor = '#22c55e'); //#DC143C
+                    
+                    await sleep(animationSpeed);
                 }
+                
             }
-
-            let bar2 = document.getElementById(minIndex as unknown as string) as HTMLDivElement | null;
-            bar2 && (bar2.style.backgroundColor = '#6A5ACD');
-
-            await sleep(animationSpeed);
 
             var temp = arr[i];
             arr[i] = arr[minIndex];
             arr[minIndex] = temp;
 
             bar1 && (bar1.style.backgroundColor = '#f97316');
-            bar2 && (bar2.style.backgroundColor = '#f97316');
+            bar3 && (bar3.style.backgroundColor = '#f97316');
             forceUpdate();
         }
         finishedAnimation();
