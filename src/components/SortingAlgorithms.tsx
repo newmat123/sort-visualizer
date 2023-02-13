@@ -44,15 +44,16 @@ export default function SortingAlgorithms() {
         setSorting(false);
     }
 
-    //algorithms--------------------------------------------------------------------
 
+    //algorithms--------------------------------------------------------------------
+    
     const mergeSort = async () => {
 
         const merge = async (array: number[], LeftI: number, mid: number, rightI: number) => {
             let i = LeftI;
             let j = mid + 1;
             let tempArrI = 0;
-            let tempArr = [];
+            let tempArr:number[] = [];
 
             while (i <= mid && j <= rightI) {
                 if (array[i] <= array[j]) {
@@ -63,11 +64,7 @@ export default function SortingAlgorithms() {
                     j++;
                 }
                 tempArrI++;
-                setArr([...arr, tempArr.length]);
-
-                //quic fix--------------------------------------------------------------------------------------------------------------
-                let ekstraBar = document.getElementById(ARR_LEN as unknown as string) as HTMLDivElement | null;
-                ekstraBar && (ekstraBar.style.display = "none");
+                console.log(tempArr);
 
                 let bar1 = document.getElementById(i as unknown as string) as HTMLDivElement | null;
                 let bar2 = document.getElementById(j as unknown as string) as HTMLDivElement | null;
@@ -81,8 +78,6 @@ export default function SortingAlgorithms() {
 
             while (i <= mid) {
                 tempArr[tempArrI] = array[i];
-
-                setArr([...arr, tempArr.length]);
 
                 let bar1 = document.getElementById(i as unknown as string) as HTMLDivElement | null;
                 let bar2 = document.getElementById(j as unknown as string) as HTMLDivElement | null;
@@ -100,8 +95,6 @@ export default function SortingAlgorithms() {
             while (j <= rightI) {
                 tempArr[tempArrI] = array[j]
 
-                setArr([...arr, tempArr.length]);
-
                 let bar1 = document.getElementById(i as unknown as string) as HTMLDivElement | null;
                 let bar2 = document.getElementById(j as unknown as string) as HTMLDivElement | null;
                 bar1 && (bar1.style.backgroundColor = '#DC143C');
@@ -114,9 +107,10 @@ export default function SortingAlgorithms() {
                 tempArrI++;
             }
 
+            // Updating arr and display
             for (let i = LeftI; i <= rightI; i++) {
                 array[i] = tempArr[i - LeftI];
-                setArr([...arr, array.length]);
+                setArr([...array]);
             }
         }
 
@@ -135,6 +129,7 @@ export default function SortingAlgorithms() {
 
         finishedAnimation();
     }
+
 
     const bubbleSort = async () => {
         setSorting(true);
@@ -161,6 +156,7 @@ export default function SortingAlgorithms() {
         }
         finishedAnimation();
     }
+
 
     const selection = async () => {
         setSorting(true);
@@ -207,6 +203,7 @@ export default function SortingAlgorithms() {
         finishedAnimation();
     }
 
+
     return (
         <div className="relative flex flex-col justify-center bg-slate-800 bg-opacity-20 rounded-md shadow-lg">
             <div className="flex flex-col">
@@ -246,69 +243,3 @@ export default function SortingAlgorithms() {
 
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// async function mergeSortT(listToSort: number[]) {
-//     if (listToSort.length > 1) {
-//         const half = Math.ceil(listToSort.length / 2);
-//         const leftHalf = listToSort.slice(0, half);
-//         const rightHalf = listToSort.slice(half);
-
-//         mergeSortT(leftHalf);
-//         mergeSortT(rightHalf);
-
-//         //variabler, som holder styr på hvor lang vi er nået i vores sortering
-//         var leftI = 0;
-//         var rightI = 0;
-//         var tempI = 0;
-
-//         while (leftHalf.length > leftI && rightHalf.length > rightI) {
-//             if (leftHalf[leftI] < rightHalf[rightI]) {
-//                 listToSort[tempI] = leftHalf[leftI];
-//                 leftI++;
-//             } else {
-//                 listToSort[tempI] = rightHalf[rightI];
-//                 rightI++;
-//             }
-//             tempI++;
-//         }
-//         while (rightHalf.length > rightI) {
-//             listToSort[tempI] = rightHalf[rightI];
-//             rightI++;
-//             tempI++;
-//         }
-//         while (leftHalf.length > leftI) {
-//             listToSort[tempI] = leftHalf[leftI];
-//             leftI++;
-//             tempI++;
-//         }
-//         setArr(listToSort);
-
-//         let bar1 = document.getElementById(""+leftI) as HTMLDivElement|null;
-//         let bar2 = document.getElementById(""+rightI) as HTMLDivElement|null;
-//         bar1 && (bar1.style.backgroundColor = '#DC143C');
-//         bar2 && (bar2.style.backgroundColor = '#6A5ACD');
-
-//         await sleep(animationSpeed);
-
-//         bar1 && (bar1.style.backgroundColor = '#FF7F50');
-//         bar2 && (bar2.style.backgroundColor = '#FF7F50');
-
-//         forceUpdate();
-
-//         return listToSort
-//     } else {
-//         return listToSort;
-//     }
-// }
