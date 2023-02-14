@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useReducer } from "react";
 
 const ARR_LEN = 100;
-const MAX_H = 200;
+const MAX_H = 200; //px
 const MIN_H = 20;
 const ANIM_SPEED = 25; // ms
+const DELAY_MIN = 1; // ms
+const DELAY_MAX = 250; // ms
 
 function randomVal(max: number, min: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -14,6 +16,12 @@ export default function SortingAlgorithms() {
     const [sorting, setSorting] = useState(false);
     const [animationSpeed, setAnimationSpeed] = useState(ANIM_SPEED);
     const [arr, setArr] = useState<(number)[]>([]);
+
+    // Handles the delay input
+    const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+        let value = Math.max(DELAY_MIN, Math.min(DELAY_MAX, Number(event.currentTarget.value)));
+        setAnimationSpeed(value);
+    };
 
     const newArray = () => {
         setArr([]);
@@ -64,7 +72,6 @@ export default function SortingAlgorithms() {
                     j++;
                 }
                 tempArrI++;
-                console.log(tempArr);
 
                 let bar1 = document.getElementById(i as unknown as string) as HTMLDivElement | null;
                 let bar2 = document.getElementById(j as unknown as string) as HTMLDivElement | null;
@@ -220,6 +227,19 @@ export default function SortingAlgorithms() {
                             ></div>
                         ))}
                 </div>
+                <div className={`absolute top-1 right-2 pb-5 justify-center text-white ${sorting === false ? "opacity-80" : "opacity-30"}`}>
+                    <input
+                        className="border rounded-lg w-12 sm:w-14 p-[2px] bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-base"
+                        onChange={handleChange}
+                        name="delay"
+                        id="delay"
+                        type="number"
+                        placeholder="5 ms"
+                        value={animationSpeed}
+                        disabled={sorting}
+                    /> 
+                    <span className="-ml-5 text-xs">ms</span>
+                </div>
                 <div className="flex justify-between m-2 py-0 px-2 2xl:p-2 2xl:mx-10 relative">
                     <button className=" hover:text-slate-300 hover:shadow-md text-xs sm:text-base" onClick={newArray}>
                         New array
@@ -234,7 +254,7 @@ export default function SortingAlgorithms() {
                         Selection sort
                     </button>
                     {
-                        sorting == true &&
+                        sorting === true &&
                         <div className="absolute inset-0 w-full h-full bg-red-500 bg-opacity-25 rounded"></div>
                     }
                 </div>
