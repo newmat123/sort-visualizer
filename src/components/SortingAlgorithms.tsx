@@ -54,14 +54,14 @@ export default function SortingAlgorithms() {
 
 
     //algorithms--------------------------------------------------------------------
-    
+
     const mergeSort = async () => {
 
         const merge = async (array: number[], LeftI: number, mid: number, rightI: number) => {
             let i = LeftI;
             let j = mid + 1;
             let tempArrI = 0;
-            let tempArr:number[] = [];
+            let tempArr: number[] = [];
 
             while (i <= mid && j <= rightI) {
                 if (array[i] <= array[j]) {
@@ -180,7 +180,7 @@ export default function SortingAlgorithms() {
 
                 bar2 = document.getElementById(j as unknown as string) as HTMLDivElement | null;
                 bar2 && (bar2.style.backgroundColor = '#6A5ACD');
-                
+
                 await sleep(animationSpeed);
                 bar2 && (bar2.style.backgroundColor = '#f97316');
 
@@ -191,12 +191,12 @@ export default function SortingAlgorithms() {
                     minIndex = j;
                     bar3 = document.getElementById(minIndex as unknown as string) as HTMLDivElement | null;
                     bar3 && (bar3.style.backgroundColor = '#DC143C');
-                    
+
                     bar1 && (bar1.style.backgroundColor = '#22c55e'); //#DC143C
-                    
+
                     await sleep(animationSpeed);
                 }
-                
+
             }
 
             var temp = arr[i];
@@ -229,7 +229,7 @@ export default function SortingAlgorithms() {
                 </div>
                 <div className={`absolute top-1 right-2 pb-5 justify-center text-white ${sorting === false ? "opacity-80" : "opacity-30"}`}>
                     <input
-                        className="border rounded-lg w-12 sm:w-14 p-[2px] bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-base"
+                        className="border rounded-lg w-12 sm:w-14 p-[2px] bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 text-xs sm:text-base shadow-md"
                         onChange={handleChange}
                         name="delay"
                         id="delay"
@@ -237,8 +237,21 @@ export default function SortingAlgorithms() {
                         placeholder="5 ms"
                         value={animationSpeed}
                         disabled={sorting}
-                    /> 
+                    />
                     <span className="-ml-5 text-xs">ms</span>
+                    <style jsx >{`
+                        /* Chrome, Safari, Edge, Opera */
+                        input::-webkit-outer-spin-button,
+                        input::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                    
+                        /* Firefox */
+                        input[type=number] {
+                            -moz-appearance: textfield;
+                        }
+                    `}</style>
                 </div>
                 <div className="flex justify-between m-2 py-0 px-2 2xl:p-2 2xl:mx-10 relative">
                     <button className=" hover:text-slate-300 hover:shadow-md text-xs sm:text-base" onClick={newArray}>
